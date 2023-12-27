@@ -90,52 +90,64 @@ if program == 'Extract-Transform-Load':
     df = pd.read_excel(ax)
     st.write(df)   
 if program =='Chat-Ai':
-    st.title('Chat Ai')
+   st.title('Chat Ai')
+
     pairs = [
-        ['hi','hai','hallo','hello'],
-        ['nama kamu siapa','kamu siapa'],
-        ['apa itu hipotesis statistik','hipotesis statistik','hipotesis statistik adalah'],
-        ['sebutkan bagian hipotesis statistik','sebutkan hipotesis statistik','bagian bagian hipotesis statistik','bagian-bagian hipotesis statistik'],
-        ['agi','agi adalah','apa itu agi']
+    ['hi', 'hai', 'hallo', 'hello'],
+    ['nama kamu siapa', 'kamu siapa'],
+    ['apa itu hipotesis statistik', 'hipotesis statistik', 'hipotesis statistik adalah'],
+    ['sebutkan bagian hipotesis statistik', 'sebutkan hipotesis statistik', 'bagian bagian hipotesis statistik',
+     'bagian-bagian hipotesis statistik'],
+    ['agi', 'agi adalah', 'apa itu agi']
     ]
+
     reflec = [
-        ['hello','hallo','hai','hi'],
-        ['nama saya Galdyn','nama saya effraine'],
-        ['hipotesis statistik adalah pernyataan atau asumsiyang diajukan dalam analisis statistik untuk diuji melalui pengumpulan dam analisis data'],
-        ["""\n-Hipotesis nol(H0):ini adalah hipotesis yang menyatakan bahwa tidak ada perbedaan,tidak ada hubungan ata tidak ada efek yang
-        signifikan dalam data.Ini sering kali menggambarkan keadaan dasar atau status quo yang akan diuji.\n
-        -hipotesis alternatif(H1):ini adalah hipotesis yang berlawanan dengan hipotesis nol.Ini menyatakan bahwa ada perbedaan,ada hubungan atau efek yang signifikan dalam data.
-        """],
-        ['Artificial General Intelegence']
+    ['hello', 'hallo', 'hai', 'hi'],
+    ['nama saya Galdyn', 'nama saya effraine'],
+    ['hipotesis statistik adalah pernyataan atau asumsi yang diajukan dalam analisis statistik untuk diuji melalui pengumpulan dan analisis data'],
+    ["""\n-Hipotesis nol (H0): ini adalah hipotesis yang menyatakan bahwa tidak ada perbedaan, tidak ada hubungan, atau tidak ada efek yang signifikan dalam data. Ini sering kali menggambarkan keadaan dasar atau status quo yang akan diuji.\n
+    -Hipotesis alternatif (H1): ini adalah hipotesis yang berlawanan dengan hipotesis nol. Ini menyatakan bahwa ada perbedaan, ada hubungan, atau efek yang signifikan dalam data.
+    """],
+    ['Artificial General Intelligence']
     ]
-    def response():
+
+    def response(prompt):
         xt = False
-        for i in range(0,len(pairs)):
+        for i in range(0, len(pairs)):
             if prompt.lower() in pairs[i]:
-                #rint(reflec[i][random.randrange(0,len(reflec[i]))])
-                x= st.chat_message("ai")
-                x.write(str(reflec[i][random.randrange(0,len(reflec[i]))]))
-                xt=True
-        if xt==False:
-            w=st.chat_message('ai')
+                x = st.chat_message("ai")
+                x.write(str(reflec[i][random.randrange(0, len(reflec[i]))]))
+                xt = True
+        if not xt:
+            w = st.chat_message('ai')
             w.write(f'Maaf yang anda maksudkan ~{prompt}~ belum dapat saya pahami...')
+
     chat_history = st.session_state.setdefault('chat_history', [])
+
     def add_message(message):
         chat_history.append(message)
+
     def display_chat():
         for message in chat_history:
-            st.text(prompt)
-    prompt = st.chat_input("Say something")
-    add_message(prompt)
-    if prompt:
-        if 'hitunglah' in prompt.lower():
-            prompt = prompt.split(" ")
-            w=st.chat_message('ai')
-            w.write(eval(prompt[-1]))
-            add_message(eval(prompt[-1]))
-            
-        else:
-            response()
+            st.text(message)
+
+    prompt = st.text_input("Say something")
+    if st.button("Send"):
+        add_message(prompt)
+        if prompt:
+            if 'hitunglah' in prompt.lower():
+                prompt = prompt.split(" ")
+                w = st.chat_message('ai')
+                w.write(eval(prompt[-1]))
+                add_message(eval(prompt[-1]))
+
+            else:
+                response(prompt)
+
+    display_chat()
+
+# Save chat history to session state
+st.session_state['chat_history'] = chat_history
 if program == "Buat PDF":
 
     oxp = []

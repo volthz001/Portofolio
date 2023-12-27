@@ -21,7 +21,7 @@ if program == "Manipulated Data":
         if ax.name[-4:] == '.csv':
             df = pd.read_csv(ax)
         st.write(df)
-    lings = {
+        lings = {
         'No':[i for i in range(0,3)],
         'Ubah nama kolom':df.columns,
         }

@@ -90,8 +90,7 @@ if program == 'Extract-Transform-Load':
     df = pd.read_excel(ax)
     st.write(df)   
 if program =='Chat-Ai':
-   st.title('Chat Ai')
-
+    st.title('Chat Ai')
     pairs = [
     ['hi', 'hai', 'hallo', 'hello'],
     ['nama kamu siapa', 'kamu siapa'],

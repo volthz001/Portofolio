@@ -87,7 +87,7 @@ if program == 'Extract-Transform-Load':
     ax= st.file_uploader('Input your File...') 
     if ax is not None:  
         st.succes("File berhasil diunggah...")
-    df = pd.read_excel('../downloads/jumlah-investor-berskala-nasional-pmdn-pma-1-jan-31-desember-2022.xlsx')
+    df = pd.read_excel(ax)
     st.write(df)   
 if program =='Chat-Ai':
     st.title('Chat Ai')
@@ -119,6 +119,12 @@ if program =='Chat-Ai':
         if xt==False:
             w=st.chat_message('ai')
             w.write(f'Maaf yang anda maksudkan ~{prompt}~ belum dapat saya pahami...')
+    chat_history = st.session_state.setdefault('chat_history', [])
+    def add_message(message):
+        chat_history.append(message)
+    def display_chat():
+        for message in chat_history:
+            st.text(message)
     prompt = st.chat_input("Say something")
     if prompt:
         if 'hitunglah' in prompt.lower():

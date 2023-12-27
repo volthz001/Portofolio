@@ -124,13 +124,16 @@ if program =='Chat-Ai':
         chat_history.append(message)
     def display_chat():
         for message in chat_history:
-            st.text(message)
+            st.text(prompt)
     prompt = st.chat_input("Say something")
+    add_message(prompt)
     if prompt:
         if 'hitunglah' in prompt.lower():
             prompt = prompt.split(" ")
             w=st.chat_message('ai')
             w.write(eval(prompt[-1]))
+            add_message(eval(prompt[-1]))
+            
         else:
             response()
 if program == "Buat PDF":

@@ -33,15 +33,6 @@ st.markdown(r'''
 <script>
 alert("hello world")</script>
 <style>
-#class="stDeployButton"{visibility: hidden}
-[data-testid=stAppViewContainer]{
-    background-image: url("psm 1.jpg");
-    background-size:cover
-}
-[data-testid=stSidebar]{
-    background-image: url("psm 1.jpg");
-}
-#footer{visibility:hidden};
 
 </style>
 ''',unsafe_allow_html=True)

@@ -41,7 +41,7 @@ alert("hello world")</script>
 [data-testid=stSidebar]{
     background-image: url("psm 1.jpg");
 }
-footer{visibility:hidden};
+#footer{visibility:hidden};
 
 </style>
 ''',unsafe_allow_html=True)

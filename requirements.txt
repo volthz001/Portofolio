@@ -1,0 +1,6 @@
+streamlit
+plotly
+streamlit_javascript
+streamlit_option_menu
+pandas
+numpy
